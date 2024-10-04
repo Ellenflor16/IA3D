@@ -5,47 +5,67 @@ const caixaResultado = document.querySelector('.caixa-resultado');
 
 const perguntas = [
     {
-        enunciado: "a inteligencia artificial prjudica as pessoas?",
+        enunciado: "A Inteligência Artificial prejudica as pessoas?",
         alternativas: [
             {
-                texto: "sim",
-                afirmativa: "alternativa da afirmativa 1"
+                texto: "Sim",
+                afirmativa: "Afirmativa da alternativa 1"
             },
             {
-                texto: "não",
-                afirmativa: "afirmativa da alternativa 2"
+                texto: "Não",
+                afirmativa: "Afirmativa da alternativa 2"
+            }
+        ]
+    },
+    {
+        enunciado: "Você gosta de usar Inteligência Artificial?",
+        alternativas: [
+            {
+                texto: "Sim",
+                afirmativa: "Afirmativa da alternativa 1"
             },
             {
-        enunciado: "voce gosta de usar intelicia artificil?",
-        alternativas: [{
-            texto:"sim", 
-            afirmativa:"afirmativa da alterntiva 1"
-       },
-       {
-            texto:"não",
-            afirmativa:"afirmativa da alternativa 2"
-        }
-    [
-
-    ]
-        enunciado: "usa com frequencia",
-        alternativas: ["sim", "nao"]
+                texto: "Não",
+                afirmativa: "Afirmativa da alternativa 2"
+            }
+        ]
+    },
+    {
+        enunciado: "Usa com frêquencia?",
+        alternativas: [
+            {
+                texto: "Sim",
+                afirmativa: "Afirmativa da alternativa 1"
+            },
+            {
+                texto: "Não",
+                afirmativa: "Afirmativa da alternativa 2"
+            }
+        ]
     }
 ]
 
 let posicao = 0;
 let perguntaAtual;
+let respostas = ""
 
 function mostraPergunta() {
-    perguntaAtual = perguntas[poicao];
+    perguntaAtual = perguntas[posicao];
     caixaPergunta.textContent = perguntaAtual.enunciado;
-
+    mostraAlternativas();
 }
-function mostraAlternativa() {
-    for (const alternativa of perguntaAtual.alternativa) {
-        const botaoAlternativa = document.createElement("button");
+function mostraAlternativas() {
+    for (const alternativa of perguntaAtual.alternativas) {
+        const botaoAlternativas = document.createElement("button");
         botaoAlternativas.textContent = alternativa.texto;
-        botaoAlternativa.textContent = alternativa;
-       
+        botaoAlternativas.addEventListener("click",()=> respostaSelecionada(alternativa));
+        caixaAlternativa.appendChild(botaoAlternativas);
     }
 }
+function respostaSelecionada(opcaoSelecionada){
+    const afirmacoes = opcaoSelecionada.afirmativa;
+    respostas = afirmacoes;
+    posicao++;
+    mostraPergunta();
+}
+mostraPergunta();
