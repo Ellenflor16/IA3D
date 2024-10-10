@@ -50,8 +50,13 @@ let perguntaAtual;
 let respostas = ""
 
 function mostraPergunta() {
+    if(posicao >= perguntas.length){
+        mostraResultado();
+        return;
+    }
     perguntaAtual = perguntas[posicao];
     caixaPergunta.textContent = perguntaAtual.enunciado;
+    caixaAlternativa.textContent = " ";
     mostraAlternativas();
 }
 function mostraAlternativas() {
@@ -68,4 +73,5 @@ function respostaSelecionada(opcaoSelecionada){
     posicao++;
     mostraPergunta();
 }
+function mostraResultado();
 mostraPergunta();
