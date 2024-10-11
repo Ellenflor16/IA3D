@@ -2,18 +2,19 @@ const caixaPrincipal = document.querySelector('.caixa-principal');
 const caixaPergunta = document.querySelector('.caixa-pergunta');
 const caixaAlternativa = document.querySelector('.caixa-alternativa');
 const caixaResultado = document.querySelector('.caixa-resultado');
+const textoResultado = document.querySelector('.texto-resultado');
 
-const perguntas = [
-    {
+const perguntas = [     //serve para abrir lista de perguntas
+    {   //abre o objeto das perguntas
         enunciado: "A Inteligência Artificial prejudica as pessoas?",
         alternativas: [
             {
                 texto: "Sim",
-                afirmativa: "Afirmativa da alternativa 1"
+                afirmativa: "será boa para as pessoas"
             },
             {
                 texto: "Não",
-                afirmativa: "Afirmativa da alternativa 2"
+                afirmativa: "Não será boa para as pessoas"
             }
         ]
     },
@@ -22,11 +23,11 @@ const perguntas = [
         alternativas: [
             {
                 texto: "Sim",
-                afirmativa: "Afirmativa da alternativa 1"
+                afirmativa: "é bom para pesquisas"
             },
             {
                 texto: "Não",
-                afirmativa: "Afirmativa da alternativa 2"
+                afirmativa: "não é boa para pesquisas"
             }
         ]
     },
@@ -35,22 +36,20 @@ const perguntas = [
         alternativas: [
             {
                 texto: "Sim",
-                afirmativa: "Afirmativa da alternativa 1"
+                afirmativa: "gosto muito de usar"
             },
             {
                 texto: "Não",
-                afirmativa: "Afirmativa da alternativa 2"
-            }
-        ]
-    }
+                afirmativa: "não gosto de usar muito" }]
+    },
 ]
 
 let posicao = 0;
 let perguntaAtual;
-let respostas = ""
+let respostas = "";
 
 function mostraPergunta() {
-    if(posicao >= perguntas.length){
+    if (posicao >= perguntas.length){
         mostraResultado();
         return;
     }
@@ -63,15 +62,19 @@ function mostraAlternativas() {
     for (const alternativa of perguntaAtual.alternativas) {
         const botaoAlternativas = document.createElement("button");
         botaoAlternativas.textContent = alternativa.texto;
-        botaoAlternativas.addEventListener("click",()=> respostaSelecionada(alternativa));
+        botaoAlternativas.addEventListener("click",() => respostaSelecionada(alternativa));
         caixaAlternativa.appendChild(botaoAlternativas);
     }
 }
 function respostaSelecionada(opcaoSelecionada){
     const afirmacoes = opcaoSelecionada.afirmativa;
-    respostas = afirmacoes;
+    respostas += afirmacoes;
     posicao++;
     mostraPergunta();
 }
-function mostraResultado();
+function mostraResultado(){
+    caixaPergunta.textContent = "Em 25 anos...";
+    textoResultado.textContent = respostas;
+    caixaAlternativa.textContent = "";
+}
 mostraPergunta();

@@ -4,7 +4,7 @@
     --cor-segundaria:#E0FFFF ;
     --cor-destaque:#4682B4 ;
     --cor-texto: #DC143C;
-}
+  }
 body{
     background-color: var(--cor-fundo);
     color: var(--cor-texto);
@@ -17,4 +17,16 @@ body{
     background-color: var(--cor-fundo);
     width: 90%;
     max-width: 600px;
+}
+button{
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    border: none;
+    border-radius: 15px;
+    padding: 15px;
+    transition: background-color 0.5s;
+}
+button:hover{
+    background-color: var(--cor-destaque);
+    color: var(--cor-principal);
 }
